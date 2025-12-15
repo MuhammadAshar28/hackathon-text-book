@@ -1,0 +1,442 @@
+/**
+ * Custom CSS for Docusaurus Glass-Morphism UI Enhancement
+ * This file provides glass-morphism styling for the documentation site
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  /* Standard Docusaurus colors - maintaining compatibility */
+  --ifm-color-primary: #2563eb;
+  --ifm-color-primary-dark: #1d4ed8;
+  --ifm-color-primary-darker: #1a47c4;
+  --ifm-color-primary-darkest: #0f2d7a;
+  --ifm-color-primary-light: #3b82f6;
+  --ifm-color-primary-lighter: #529fff;
+  --ifm-color-primary-lightest: #7abaff;
+  --ifm-code-font-size: 95%;
+
+  /* Glass-morphism base variables */
+  --glass-bg-rgba: 255, 255, 255, 0.15; /* For light mode */
+  --glass-bg-dark-rgba: 30, 30, 35, 0.25; /* For dark mode */
+  --glass-border: 1px solid rgba(255, 255, 255, 0.18);
+  --glass-border-dark: 1px solid rgba(255, 255, 255, 0.08);
+  --glass-blur: 12px;
+  --glass-radius: 30px;
+  --glass-backdrop-filter: blur(var(--glass-blur));
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  
+  /* Gradient borders */
+  --glass-gradient-border: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --glass-gradient-border-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --glass-gradient-border-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+
+  /* Neon effects */
+  --neon-color: #00eeff;
+  --neon-glow: 0 0 5px #00eeff, 0 0 10px #00eeff, 0 0 15px #00eeff, 0 0 20px #00eeff;
+  --neon-text-shadow: 0 0 5px #00eeff, 0 0 10px #00eeff;
+  
+  /* Adaptive theme */
+  --glass-bg-rgba-theme: var(--glass-bg-rgba); /* Default to light */
+  --glass-border-theme: var(--glass-border);
+  --glass-shadow-theme: var(--glass-shadow);
+
+  /* Spacing system */
+  --ifm-spacing-horizontal: 2rem;
+  --ifm-spacing-vertical: 2rem;
+  
+  /* Typography */
+  --ifm-font-size-base: 16px; /* Base font size */
+  --ifm-h1-font-size: 3rem;
+  --ifm-h2-font-size: 2.5rem;
+  --ifm-h3-font-size: 2rem;
+  --ifm-h4-font-size: 1.5rem;
+  --ifm-h5-font-size: 1.25rem;
+  --ifm-h6-font-size: 1rem;
+  
+  /* Responsive breakpoints */
+  --ifm-breakpoint-xs: 320px;
+  --ifm-breakpoint-sm: 576px;
+  --ifm-breakpoint-md: 768px;
+  --ifm-breakpoint-lg: 992px;
+  --ifm-breakpoint-xl: 1200px;
+  --ifm-breakpoint-xxl: 1400px;
+}
+
+/* Dark mode overrides */
+html[data-theme="dark"] {
+  --glass-bg-rgba-theme: var(--glass-bg-dark-rgba);
+  --glass-border-theme: var(--glass-border-dark);
+  --glass-shadow-theme: var(--glass-shadow);
+
+  /* Dark mode specific colors */
+  --ifm-background-color: #1a1a1a;
+  --ifm-navbar-background-color: rgba(26, 26, 26, 0.8);
+  --ifm-footer-background-color: #1a1a1a;
+}
+
+/* Adaptive theme using system preference */
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) {
+    --glass-bg-rgba-theme: var(--glass-bg-dark-rgba);
+    --glass-border-theme: var(--glass-border-dark);
+  }
+}
+
+/* Glass-morphism utility classes */
+.glass-container {
+  background: rgba(var(--glass-bg-rgba-theme));
+  border: var(--glass-border-theme);
+  border-radius: var(--glass-radius);
+  backdrop-filter: var(--glass-backdrop-filter);
+  -webkit-backdrop-filter: var(--glass-backdrop-filter); /* Safari support */
+  box-shadow: var(--glass-shadow-theme);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  background: var(--glass-gradient-border);
+  z-index: -1;
+  transform: rotate(30deg);
+  border-radius: var(--glass-radius);
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.glass-container:hover::before {
+  opacity: 0.8;
+  transform: rotate(60deg);
+}
+
+
+/* Neon effect classes */
+.neon-text {
+  color: var(--neon-color);
+  text-shadow: var(--neon-text-shadow);
+}
+
+.neon-border {
+  border: 1px solid var(--neon-color);
+  box-shadow: var(--neon-glow);
+}
+
+/* Responsive glass containers */
+@media (max-width: 992px) {
+  .glass-container {
+    padding: 1.5rem;
+    --glass-radius: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .glass-container {
+    padding: 1.25rem;
+    --glass-radius: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .glass-container {
+    padding: 1rem;
+    --glass-radius: 15px;
+  }
+}
+
+/* Animation utilities */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: var(--glass-gradient-border);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Enhance code blocks for technical content */
+.docusaurus-highlight-code-line {
+  background-color: rgba(0, 0, 0, 0.1);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}
+
+html[data-theme='dark'] .docusaurus-highlight-code-line {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Style for lesson objectives and learning outcomes */
+.lesson-objectives {
+  background: rgba(var(--glass-bg-rgba-theme));
+  border: var(--glass-border-theme);
+  border-radius: var(--glass-radius);
+  backdrop-filter: var(--glass-backdrop-filter);
+  -webkit-backdrop-filter: var(--glass-backdrop-filter); /* Safari support */
+  box-shadow: var(--glass-shadow-theme);
+  padding: 1rem;
+  margin: 1.5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.lesson-objectives::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  background: var(--glass-gradient-border);
+  z-index: -1;
+  transform: rotate(30deg);
+  border-radius: var(--glass-radius);
+  opacity: 0.3;
+}
+
+.lesson-objectives h3 {
+  margin-top: 0;
+  color: var(--ifm-color-primary);
+}
+
+/* Style for callout boxes for important information */
+.callout-important {
+  background: rgba(var(--glass-bg-rgba-theme));
+  border: 1px solid rgba(254, 202, 202, 0.5);
+  border-radius: var(--glass-radius);
+  backdrop-filter: var(--glass-backdrop-filter);
+  -webkit-backdrop-filter: var(--glass-backdrop-filter); /* Safari support */
+  padding: 1rem;
+  margin: 1.5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.callout-important::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  background: linear-gradient(135deg, #fda4af 0%, #f87171 100%);
+  z-index: -1;
+  transform: rotate(30deg);
+  border-radius: var(--glass-radius);
+  opacity: 0.3;
+}
+
+.callout-important h4 {
+  color: #dc2626;
+  margin-top: 0;
+}
+
+/* Style for technical diagrams and code examples */
+.technical-content {
+  background: rgba(var(--glass-bg-rgba-theme));
+  border: var(--glass-border-theme);
+  border-radius: var(--glass-radius);
+  backdrop-filter: var(--glass-backdrop-filter);
+  -webkit-backdrop-filter: var(--glass-backdrop-filter); /* Safari support */
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.technical-content::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  background: var(--glass-gradient-border-2);
+  z-index: -1;
+  transform: rotate(30deg);
+  border-radius: var(--glass-radius);
+  opacity: 0.2;
+}
+
+/* Custom styling for buttons */
+.button--primary {
+  background: var(--glass-gradient-border);
+  border: none;
+  border-radius: var(--glass-radius);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.button--primary::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  background: var(--glass-gradient-border);
+  z-index: -1;
+  transform: rotate(30deg);
+  border-radius: var(--glass-radius);
+  opacity: 0.5;
+}
+
+.button--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  opacity: 0.9;
+}
+
+/* Style for exercise and assignment sections */
+.exercise-box {
+  background: rgba(var(--glass-bg-rgba-theme));
+  border: 2px dashed var(--ifm-color-primary-lighter);
+  border-radius: var(--glass-radius);
+  backdrop-filter: var(--glass-backdrop-filter);
+  -webkit-backdrop-filter: var(--glass-backdrop-filter); /* Safari support */
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.exercise-box::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  background: var(--glass-gradient-border-3);
+  z-index: -1;
+  transform: rotate(30deg);
+  border-radius: var(--glass-radius);
+  opacity: 0.2;
+}
+
+.exercise-box h4 {
+  color: var(--ifm-color-primary);
+  margin-top: 0;
+}
+
+/* Homepage specific theme enhancements */
+.homepage-section {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, rgba(6,11,40,1) 0%, rgba(13,18,48,1) 100%);
+}
+
+.homepage-section h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2.5rem;
+  background: var(--glass-gradient-border);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Enhanced homepage glass containers */
+.homepage-glass-container {
+  background: rgba(var(--glass-bg-rgba-theme), 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--glass-radius);
+  backdrop-filter: var(--glass-backdrop-filter);
+  -webkit-backdrop-filter: var(--glass-backdrop-filter); /* Safari support */
+  box-shadow: var(--glass-shadow-theme);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.homepage-glass-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.homepage-glass-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  background: var(--glass-gradient-border);
+  z-index: -1;
+  transform: rotate(30deg);
+  border-radius: var(--glass-radius);
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+.homepage-glass-container:hover::before {
+  opacity: 0.5;
+}
+
+/* Homepage features grid */
+.homepage-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 996px) {
+  .technical-content {
+    padding: 1rem;
+  }
+
+  .exercise-box, .lesson-objectives, .callout-important {
+    padding: 0.75rem;
+  }
+
+  .homepage-section {
+    padding: 2rem 0;
+  }
+
+  .homepage-features-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
