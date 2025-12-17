@@ -12,8 +12,8 @@ const Root = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      {children}
-      {showChat && <ChatContainer />}
+        {children}
+        {showChat && <ChatContainer />}
     </>
   );
 };

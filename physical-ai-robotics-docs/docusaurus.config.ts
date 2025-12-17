@@ -1,5 +1,5 @@
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
+import { themes as prismThemes } from 'prism-react-renderer';
+import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
@@ -25,6 +25,10 @@ const config: Config = {
       onBrokenMarkdownLinks: 'warn',
     },
   },
+
+  // clientModules: [
+  //   require.resolve('./src/theme/ProviderWrapper.tsx'),
+  // ],
 
   i18n: {
     defaultLocale: 'en',
@@ -84,12 +88,16 @@ const config: Config = {
           label: 'Course Book',
         },
         // { to: '/blog', label: 'Blog', position: 'left' },
+        // {
+        //   type: 'custom-authButtons',
+        //   position: 'right',
+        // },
         {
           type: 'localeDropdown',
           position: 'right',
         },
         {
-          href: 'https://github.com/physical-ai/physical-ai-robotics-course',
+          href: 'https://github.com/physical-ai/physical-robotics-course',
           label: 'GitHub',
           position: 'right',
         },
@@ -127,7 +135,7 @@ const config: Config = {
             { label: 'Blog', to: '/blog' },
           ],
         },
-        
+
       ],
       copyright: `Copyright © ${new Date().getFullYear()} Physical AI & Humanoid Robotics Course. Built with Docusaurus.`,
     },
